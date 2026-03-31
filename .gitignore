@@ -1,7 +1,5 @@
 data/raw/
-data/processed/
-outputs/models/
-
+.idea/
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb_checkpoints
