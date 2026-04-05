@@ -1,4 +1,4 @@
-# Preprocessing Guide — preprocessing.ipynb
+# Preprocessing Guide
 
 Run preprocessing notebook before any modeling if you need to.
 All the stuff below is so every will know what I did
