@@ -10,20 +10,20 @@ and what the files generated are and do.
 ### Clean Dataset (tree-based models)
 data/processed/spotify_clean.csv
 - Deduplicated, outliers capped, popularity binarized
-- Use for: Random Forest, AdaBoost, Gradient Boosting
-- These models do not need scaling or log transform
+- Could be used for Random Forest, AdaBoost, Gradient Boosting etc
+- They didnt need scaling or log transforms
 
 ### Log Transformed + Standard Scaled (distance-based models)
 data/processed/spotify_standard_scaled.csv
 - Log transform applied to speechiness, liveness, instrumentalness, duration_ms
 - StandardScaler applied to all continuous features (mean=0, std=1)
-- Use for: SVM, k-means clustering (Objective 3)
+- Could be used for SVM, k-means clustering in Objective 3
 
-### Log Transformed + MinMax Scaled (neural network)
+### Log Transformed + MinMax Scaled (neural networks)
 data/processed/spotify_minmax_scaled.csv
 - Same log transform as above
-- MinMaxScaler applied to all continuous features (range 0-1)
-- Use for: Neural Network (Objective 1)
+- MinMaxScaler applied to all the continuous features with range 0-1
+- Could be used for Neural Networks in Objective 1
 
 ### Scalers
 outputs/models/scaler_standard.pkl  -> StandardScaler
