@@ -4,6 +4,36 @@ Machine learning scripts for classifying Spotify track genres using audio featur
 
 ## Files
 
+### `eda.ipynb`
+
+Exploratory data analysis on the raw Spotify dataset. Covers feature group
+identification, class balance verification, popularity distribution, audio
+feature distributions and skewness analysis, correlation heatmap, mood
+quadrant visualization using Russell (1980), and IQR outlier detection.
+All findings feed directly into preprocessing decisions.
+
+### `preprocessing.ipynb`
+
+Cleans and prepares the dataset for all three modeling objectives. Steps include
+duplicate removal, outlier capping, log transform on skewed features, feature
+scaling, popularity binarization, and stratified train/val/test splitting.
+Generates all files in data/processed/ required by modeling notebooks and scripts.
+
+
+### `Spotify_mining.ipynb`
+
+Trains and evaluates a classifier on binary popularity labels to predict whether a 
+track will be popular or not.
+
+
+### `mood_cluster.ipynb`
+
+Mood-Based Clustering and Classification - Applies k-means
+clustering in valence/energy space consistent with Russell's (1980)
+circumplex model. Trains and evaluates three supervised classifiers on
+derived mood labels. Analyzes mood distribution across genres with
+chi-square significance testing
+
 ### `ensemble_methods.py`
 
 Trains and evaluates two ensemble classifiers for multi-class genre prediction:
@@ -50,6 +80,27 @@ Datasets/
   y_genre_val.csv         # Validation split labels
   y_genre_test.csv        # Test split labels
 ```
+
+## Processed Data Files
+
+| File | Description | Use For |
+|---|---|---|
+| spotify_clean.csv | Deduplicated, outliers capped, raw scale | Tree-based models |
+| spotify_log_transformed.csv | Log transform applied, pre-scaling reference | Reference |
+| spotify_standard_scaled.csv | Log transformed + StandardScaler | SVM, k-means |
+| spotify_minmax_scaled.csv | Log transformed + MinMaxScaler | Neural network |
+| X_train/val/test.csv | Feature splits (70/10/20, stratified) | All models |
+| y_genre_train/val/test.csv | Genre labels | Objective 1 |
+| y_popular_class_train/val/test.csv | Binary popularity labels (threshold=35) | Objective 2 |
+| y_popular_reg_train/val/test.csv | Raw popularity scores | Objective 2 regression |
+
+## Model Files
+
+| File | Description |
+|---|---|
+| standard_scaler.pkl | Fitted StandardScaler |
+| min_max_scaler.pkl | Fitted MinMaxScaler |
+
 
 Each label CSV maps a track index to its `track_genre` column.
 
